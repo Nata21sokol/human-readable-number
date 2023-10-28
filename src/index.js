@@ -9,7 +9,7 @@ module.exports = function toReadable(number) {
         5: "five",
         6: "six",
         7: "seven",
-        8: "eigth",
+        8: "eight",
         9: "nine",
         10: "ten",
         11: "eleven",
@@ -35,15 +35,17 @@ module.exports = function toReadable(number) {
         return objectNumbers[number];
 
     if (number >= 100) {
-       word = word +  toReadable(Math.floor(number / 100)) + ' hundred';
+       word = word + toReadable(Math.floor(number / 100)) + ' hundred';
        number = number % 100;
     }
     if (number > 20) {
-        word = word + ' ' +  toReadable(Math.floor(number / 10) * 10);
+        if(word !== '') word += ' ';
+        word = word +  toReadable(Math.floor(number / 10) * 10);
         number = number % 10;
     }
     if (number % 10 > 0) {
-        word += word + ' ' + objectNumbers[number % 10];
+        if(word !== '') word += ' ';
+        word = word + toReadable(number)
     }
     return word;
 }
