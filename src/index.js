@@ -1,6 +1,5 @@
 module.exports = function toReadable(number) {
-    word = '';
-   const objectNumbers = {
+    const objectNumbers = {
         0: "zero",
         1: "one",
         2: "two",
@@ -31,21 +30,24 @@ module.exports = function toReadable(number) {
         90: "ninety"
     }
 
-    if (number in objectNumbers) 
+    word = '';
+
+    if (number in objectNumbers)
         return objectNumbers[number];
 
     if (number >= 100) {
-       word = word + toReadable(Math.floor(number / 100)) + ' hundred';
-       number = number % 100;
+        word = word + toReadable(Math.floor(number / 100)) + ' hundred';
+        number = number % 100;
     }
-    if (number > 20) {
-        if(word !== '') word += ' ';
-        word = word +  toReadable(Math.floor(number / 10) * 10);
+    if (number >= 20) {
+        if (word !== '') word += ' ';
+        word = word + toReadable(Math.floor(number / 10) * 10);
         number = number % 10;
     }
+
     if (number % 10 > 0) {
-        if(word !== '') word += ' ';
-        word = word + toReadable(number)
+        // if (word !== '') word += ' ';
+        word = word + ' ' + toReadable(number % 100);
     }
     return word;
 }
